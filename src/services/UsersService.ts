@@ -8,11 +8,18 @@ class UsersService {
     constructor() {
         this.usersRepository = getCustomRepository(UsersRepository);
     }
-    async create(email: string) {
 
+    async findByEmail(email: string) {
         const userExists = await this.usersRepository.findOne({
             email
         });
+
+        return userExists
+    }
+
+    async create(email: string) {
+
+        const userExists = this.findByEmail(email);
 
         if (userExists) {
             return userExists;
