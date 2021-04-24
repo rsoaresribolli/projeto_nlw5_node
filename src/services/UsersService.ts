@@ -19,7 +19,7 @@ class UsersService {
 
     async create(email: string) {
 
-        const userExists = this.findByEmail(email);
+        const userExists = await this.findByEmail(email);
 
         if (userExists) {
             return userExists;
